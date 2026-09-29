@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestiune Alimente - mockup</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Gestiune Alimente</h1>
+    <p>Monitorizează stocurile de alimente și organizează aprovizionarea restaurantului.</p>
+    <p class="app-count">3 alimente, dintre care 2 disponibile</p>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Adaugă aliment</h2>
+      <form class="item-form">
+        <label>Nume ingredient 
+          <input type="text" name="ingredient" placeholder="Ex: Roșii proaspete" />
+        </label>
+        
+        <label>Depozitare
+          <select name="depozitare">
+            <option value="camara">Cămară</option>
+            <option value="frigider">Frigider</option>
+            <option value="congelator">Congelator</option>
+          </select>
+        </label>
+        
+        <button type="submit">Adaugă</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Lista de alimente</h2>
+      <ul class="item-list">
+        
+        <li class="item-card">
+          <div>
+            <h3>Roșii</h3>
+            <span class="badge badge-frigider">Frigider</span>
+          </div>
+          <span class="status">Disponibil</span>
+        </li>
+        
+        <li class="item-card done">
+          <div>
+            <h3>Mușchi de vită</h3>
+            <span class="badge badge-congelator">Congelator</span>
+          </div>
+          <span class="status">Necesită aprovizionare</span>
+        </li>
+        
+        <li class="item-card">
+          <div>
+            <h3>Făină de grâu</h3>
+            <span class="badge badge-camara">Cămară</span>
+          </div>
+          <span class="status">Disponibil</span>
+        </li>
+
+      </ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">Proiect Tehnologii Web</footer>
+</body>
+</html>
