@@ -25,4 +25,5 @@ Details per stage: see the ai-log/ folder.
 
 ## Status
 - [x] Stage 1: static mockup
-- [ ] Stage 2: data logic in JavaScript
+- [x] Stage 2: data logic in JavaScript
+- [ ] Stage 3: 
