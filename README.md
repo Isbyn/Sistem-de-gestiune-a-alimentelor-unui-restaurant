@@ -21,6 +21,8 @@ Open `index.html` in a browser. No build step, no server.
 | Tool          | Used for                                               |
 | ------------- | ------------------------------------------------------ |
 | Gemini        | generating theme description and data model, stage 1   |
+|               | adapting the laboratory requirements to restaurant food management, stage 2|
+                                                      
 Details per stage: see the ai-log/ folder.
 
 ## Status
