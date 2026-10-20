@@ -1,211 +1,89 @@
-
-* {
-  box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 :root {
-  /* Culori de bază */
-  --bg: #f0f4f8; 
+  
+  --bg: #F7F6F2;             
   --card: #ffffff;
-  --text: #1f2933;
-  --muted: #6b7280;
-  --accent: #1b4332; 
-  --accent-dark: #081c15;
-  --accent-soft: #d8f3dc;
-
-  --border: #e5e7eb;
-  --badge-camara: #d2b48c;     
-  --badge-frigider: #87cefa;   
-  --badge-congelator: #4682b4; 
+  --text: #2C3E2D;          
+  --action-blue: #3A7D81;    
+  --action-green: #7CA982;   
+  --border: #D1D9D3;
+  
+  
+  --badge-camara: #DDA15E;   
+  --badge-frigider: #5B8E7D; 
+  --badge-congelator: #2C5F63; 
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.5;
+  margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.5;
 }
 
-/* Antetul */
 .app-header {
-  background-color: var(--accent);
-  color: white;
-  text-align: center;
-  padding: 24px 16px;
+  background-color: var(--action-blue);
+  color: white; text-align: center; padding: 32px 16px;
+  border-bottom: 5px solid var(--action-green);
 }
+.app-header h1 { margin: 0 0 8px 0; font-size: 2rem; }
+.app-count { margin: 0; font-size: 1rem; opacity: 0.9; }
 
-.app-header h1 {
-  margin: 0 0 8px 0;
-}
-
-.app-header p {
-  margin: 0;
-}
-
-.app-count {
-  margin-top: 12px !important;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-/* Cele două coloane (Grid) */
 .container {
-  max-width: 1000px;
-  margin: 24px auto;
-  padding: 0 16px;
+  max-width: 1200px; margin: 32px auto; padding: 0 16px;
+}
+.panel { background: transparent; border: none; padding: 0; }
+.panel h2 { margin-top: 0; margin-bottom: 24px; font-size: 1.5rem; color: var(--action-blue); }
+
+.task-list {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  align-items: start;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px; padding: 0; list-style: none; margin: 0;
 }
 
-/* Panourile */
-.panel {
-  background-color: var(--card);
+.task-card {
+  position: relative;
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.panel h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 1.25rem;
-}
-
-/* Formularul */
-.item-form, .item-form label {
+  border-radius: 8px;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-}
-
-.item-form input, 
-.item-form select {
-  padding: 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 1rem;
-  font-family: inherit;
-}
-
-.item-form button {
-  background-color: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  font-size: 1rem;
+  gap: 16px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.2s;
+  min-height: 200px;
+  /* Fundalul se generează acum automat din AlimentCard.jsx */
 }
 
-.item-form button:hover {
-  background-color: var(--accent-dark);
+.task-card:hover {
+  box-shadow: 0 8px 20px rgba(124, 169, 130, 0.3);
+  transform: translateY(-4px);
 }
+.task-card.done { opacity: 0.6; filter: grayscale(50%); }
 
-/* Cardurile */
-.item-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.item-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  transition: border-color 0.2s, background-color 0.2s;
-}
-
-.item-card h3 {
-  margin: 0 0 6px 0;
-  font-size: 1.1rem;
+.task-card h3 { 
+  margin: 0; 
+  font-size: 1.4rem; 
+  text-align: center; 
+  color: #ffffff; /* Alb curat */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .status {
-  font-size: 0.9rem;
-  color: var(--muted);
+  text-align: center; font-size: 1rem; font-weight: 700;
+  color: #E3E9E5; /* Un crem/alb-verzui foarte deschis pentru contrast pe negru */
+  margin-top: auto; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Stări interactive */
-.item-card:hover {
-  border-color: var(--accent);
-  background-color: var(--accent-soft);
-}
-
-/* Etichetele colorate */
 .badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #111; 
+  display: inline-block; padding: 4px 8px; border-radius: 4px;
+  font-size: 0.8rem; color: white; font-weight: bold; text-align: center;
 }
+.badge-camara { background-color: var(--badge-camara); }
+.badge-frigider { background-color: var(--badge-frigider); }
+.badge-congelator { background-color: var(--badge-congelator); }
 
-.badge-camara {
-  background-color: var(--badge-camara);
-}
-
-.badge-frigider {
-  background-color: var(--badge-frigider);
-}
-
-.badge-congelator {
-  background-color: var(--badge-congelator);
-  color: white; 
-}
-
-/* Elementul finalizat */
-.done h3 {
-  text-decoration: line-through;
-  color: var(--muted);
-}
-
-/* Focus vizibil pentru navigarea cu tastatura */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Ecranele înguste */
-@media (max-width: 700px) {
-  .container {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Tema întunecată */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121814; 
-    --card: #1a241d;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --border: #2c3a31;
-    --accent-soft: #233328;
-    --badge-camara: #a6845c;
-    --badge-frigider: #5c9bbd;
-    --badge-congelator: #346085;
-  }
-
-  .item-form input, 
-  .item-form select {
-    background-color: var(--bg);
-    color: var(--text);
-    border-color: var(--border);
-  }
-  
-  .badge {
-    color: white; 
-  }
+.status {
+  text-align: center; font-size: 0.9rem; font-weight: 700;
+  color: var(--action-green);
+  margin-top: auto; 
 }

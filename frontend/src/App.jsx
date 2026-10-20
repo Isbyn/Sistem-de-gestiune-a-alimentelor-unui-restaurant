@@ -1,7 +1,29 @@
+import AlimentList from "./components/AlimentList.jsx";
+import rosiiImg from './assets/rosii.jfif';
+import muschiImg from './assets/muschi-vita.jfif';
+import fainaImg from './assets/faina.jfif';
 const alimente = [
-  { id: 1, titlu: "Roșii", necesitaAprovizionare: false, depozitare: "frigider" },
-  { id: 2, titlu: "Mușchi de vită", necesitaAprovizionare: true, depozitare: "congelator" },
-  { id: 3, titlu: "Făină de grâu", necesitaAprovizionare: false, depozitare: "camara" }
+  { 
+    id: 1, 
+    titlu: "Roșii", 
+    depozitare: "frigider", 
+    necesitaAprovizionare: true,
+    imagine:rosiiImg
+  },
+  { 
+    id: 2, 
+    titlu: "Mușchi de vită", 
+    depozitare: "congelator", 
+    necesitaAprovizionare: true,
+    imagine: muschiImg
+  },
+  { 
+    id: 3, 
+    titlu: "Făină de grâu", 
+    depozitare: "camara", 
+    necesitaAprovizionare: false,
+    imagine: fainaImg
+  }
 ];
 
 export default function App() {
@@ -19,8 +41,7 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Lista de alimente</h2>
-          {}
-          <pre>{JSON.stringify(alimente, null, 2)}</pre>
+          <AlimentList alimente={alimente} />
         </section>
       </main>
     </>
