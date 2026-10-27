@@ -20,9 +20,15 @@ body {
 }
 
 .app-header {
-  background-color: var(--action-blue);
-  color: white; text-align: center; padding: 32px 16px;
+  position: relative;
+  color: white; 
+  text-align: center; 
+  padding: 64px 16px; 
   border-bottom: 5px solid var(--action-green);
+  
+  background-image: linear-gradient(rgba(58, 125, 129, 0.8), rgba(58, 125, 129, 0.8)), url('./assets/masa_mancare.jpg');
+  background-size: cover;
+  background-position: center;
 }
 .app-header h1 { margin: 0 0 8px 0; font-size: 2rem; }
 .app-count { margin: 0; font-size: 1rem; opacity: 0.9; }
@@ -50,7 +56,7 @@ body {
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
   min-height: 200px;
-  /* Fundalul se generează acum automat din AlimentCard.jsx */
+  
 }
 
 .task-card:hover {
@@ -63,13 +69,13 @@ body {
   margin: 0; 
   font-size: 1.4rem; 
   text-align: center; 
-  color: #ffffff; /* Alb curat */
+  color: #ffffff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .status {
   text-align: center; font-size: 1rem; font-weight: 700;
-  color: #E3E9E5; /* Un crem/alb-verzui foarte deschis pentru contrast pe negru */
+  color: #E3E9E5;
   margin-top: auto; 
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
@@ -86,4 +92,67 @@ body {
   text-align: center; font-size: 0.9rem; font-weight: 700;
   color: var(--action-green);
   margin-top: auto; 
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1F1C;
+    --card: #2C3E2D;
+    --text: #E3E9E5;
+    --border: #3A7D81;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1A1F1C;
+  --card: #2C3E2D;
+  --text: #E3E9E5;
+  --border: #3A7D81;
+}
+
+.app-header { position: relative; }
+.theme-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: rgba(255, 255, 255, 0.2); }
+
+.task-main { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  cursor: pointer; 
+  justify-content: center;
+}
+.task-main input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--action-green);
+  cursor: pointer;
+}
+
+.btn-danger {
+  border: 1px solid #ff4d4d;
+  background: transparent;
+  color: #ff4d4d;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.2s ease;
+}
+.btn-danger:hover { 
+  background: #ff4d4d; 
+  color: #fff; 
 }

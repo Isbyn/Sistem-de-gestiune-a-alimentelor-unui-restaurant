@@ -48,12 +48,58 @@ Open `index.html` in a browser. No build step, no server.
 | S3-R6 | README Stage 3 section + AI log | [README.md], [etapa-03.md] | read |
 | S3-R7 | commit "Stage 3" pushed | [commit_link]cd | commit history |
 
+## Stage 4 Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S4-R1 | 2+ components in src/components/ | [link_folder_components] | open folder |
+| S4-R2 | card receives data through props | [link_AlimentCard.jsx] | read |
+| S4-R3 | map + key={id}, no console warnings | [link_AlimentList.jsx] | F12, Console |
+| S4-R4 | message for empty list | [link_AlimentList.jsx] | set array to [] |
+| S4-R5 | state changes the card look | [link_AlimentCard.jsx] | toggle a done flag |
+| S4-R6 | README Stage 4 section + AI log | [link_README.md], [link_etapa-04.md] | read |
+| S4-R7 | commit "Stage 4" pushed | [link_commit] | commit history |
+
+### Lista de verificare a etapei
+- [x] **S4-R1** Există cel puțin două componente în `src/components/`, câte una pe fișier.
+- [x] **S4-R2** Cardul primește datele prin props și nu citește array-ul direct.
+- [x] **S4-R3** Lista este randată cu `map` și `key={id}`, fără avertismente în consolă.
+- [x] **S4-R4** Lista goală afișează un mesaj.
+- [x] **S4-R5** Starea elementului modifică aspectul cardului.
+- [x] **S4-R6** README-ul este actualizat, iar `ai-log/etapa-04.md` este completat.
+- [x] **S4-R7** Commit-ul Stage 4 este publicat pe GitHub.
+
+## Stage 5 Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S5-R1 | list kept in useState, in App | [link_App.jsx] | read |
+| S5-R2 | toggling changes state and card look | [link_App.jsx], [link_AlimentCard.jsx] | click a checkbox |
+| S5-R3 | delete removes the item | [link_App.jsx], [link_AlimentCard.jsx] | click Delete |
+| S5-R4 | header counter derived, not in state | [link_App.jsx] | toggle, watch header |
+| S5-R5 | immutable updates (no push, splice, assignment) | [link_App.jsx] | read |
+| S5-R6 | light / dark toggle: state + data-theme on html | [link_App.jsx], [link_App.css] | click the button, both system themes |
+| S5-R7 | no console warnings; README + AI log | [link_README.md], [link_etapa-05.md] | F12, Console |
+| S5-R8 | commit "Stage 5" pushed | [link_commit] | commit history |
+
+### Lista de verificare a etapei
+- [x] **S5-R1** Lista este păstrată în `useState`, în componenta părinte.
+- [x] **S5-R2** Bifarea schimbă starea elementului și aspectul cardului.
+- [x] **S5-R3** Ștergerea elimină elementul din listă.
+- [x] **S5-R4** Contorul din antet se actualizează automat, fără să fie păstrat în state.
+- [x] **S5-R5** Actualizările sunt imutabile: nu există push, splice sau atribuiri pe elementele din state.
+- [x] **S5-R6** Butonul din antet comută între tema luminoasă și cea întunecată, în ambele direcții, indiferent de tema sistemului.
+- [x] **S5-R7** Consola nu conține avertismente; README-ul și `ai-log/etapa-05.md` sunt actualizate.
+- [x] **S5-R8** Commit-ul Stage 5 este publicat pe GitHub.
+
+
 ## AI usage
 | Tool          | Used for                                               |
 | ------------- | ------------------------------------------------------ |
 | Gemini        | generating theme description and data model, stage 1   |
 |               | adapting the laboratory requirements to restaurant food management, stage 2|
-|               |resolving Vite/React errors, stage 3
+|               | resolving Vite/React errors, stage 3|
+|               | add interactive checkboxes, delete buttons, and a dark mode toggle to the React application|
                                                       
 Details per stage: see the ai-log/ folder.
 
@@ -61,4 +107,6 @@ Details per stage: see the ai-log/ folder.
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: project initiation (Vite & React)
-- [ ] Stage 4:
+- [x] Stage 4: rendered from data
+- [x] Stage 5: local state and events
+- [ ] Stage 6: loading data from a mock API
