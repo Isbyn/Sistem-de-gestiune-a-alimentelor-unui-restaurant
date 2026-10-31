@@ -103,14 +103,23 @@ body {
   }
 }
 
-:root[data-theme="dark"] {
-  --bg: #1A1F1C;
-  --card: #2C3E2D;
-  --text: #E3E9E5;
-  --border: #3A7D81;
+:root {
+  --header-overlay: rgba(58, 125, 129, 0.8);
 }
 
-.app-header { position: relative; }
+:root[data-theme="dark"] {
+  --header-overlay: rgba(15, 45, 35, 0.85); 
+}
+.app-header {
+  position: relative;
+  color: white; 
+  text-align: center; 
+  padding: 64px 16px; 
+  border-bottom: 5px solid var(--action-green);
+  background-image: linear-gradient(var(--header-overlay), var(--header-overlay)), url('./assets/masa_mancare.jpg');
+  background-size: cover;
+  background-position: center;
+}
 .theme-toggle {
   position: absolute;
   top: 16px;
@@ -155,4 +164,28 @@ body {
 .btn-danger:hover { 
   background: #ff4d4d; 
   color: #fff; 
+}
+.btn-adauga {
+  background-color: var(--action-green, #3a7d81);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; 
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-adauga:hover {
+  background-color: #4da6ab; /* O nuanță mai deschisă la survol */
+  box-shadow: 0 0 10px rgba(77, 166, 171, 0.6); /* Efectul luminos */
+  transform: translateY(-1px);
+}
+
+.btn-adauga:active {
+  background-color: #2f666a; /* O nuanță mai închisă la apăsare */
+  box-shadow: 0 0 5px rgba(58, 125, 129, 0.8);
+  transform: translateY(1px); /* Senzația de apăsare fizică */
 }

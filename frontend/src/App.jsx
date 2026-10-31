@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AlimentList from "./components/AlimentList.jsx";
+import FormularAliment from "./components/FormularAliment.jsx"; // Importul lipsă adăugat
 import rosiiImg from './assets/rosii.jfif';
 import muschiImg from './assets/muschi-vita.jfif';
 import fainaImg from './assets/faina.jfif';
@@ -18,6 +19,7 @@ function temaInitiala() {
 export default function App() {
   const [alimente, setAlimente] = useState(ALIMENTE_INITIALE);
   const [tema, setTema] = useState(temaInitiala);
+  const [arataFormular, setArataFormular] = useState(false);
 
   // Functie schimbarea starii: Bifare/Debifare
   function handleToggle(id) {
@@ -36,6 +38,11 @@ export default function App() {
     const noua = tema === "dark" ? "light" : "dark";
     setTema(noua);
     document.documentElement.dataset.theme = noua;
+  }
+
+  function handleAddAliment(nouAliment) {
+    setAlimente((prev) => [...prev, nouAliment]);
+    setArataFormular(false); // Ascundem formularul după ce am salvat
   }
 
   // Contorul se calculeaza automat la fiecare randare
@@ -57,8 +64,28 @@ export default function App() {
           {alimente.length} alimente, dintre care {disponibile} disponibile
         </p>
       </header>
+      
       <main className="container">
         <section className="panel">
+          
+          {/* Secțiunea formularului a fost mutată aici, aliniată la stânga deasupra listei */}
+          <div style={{ marginBottom: '1.5rem' }}>
+            {!arataFormular && (
+              <button 
+                onClick={() => setArataFormular(true)} 
+                className="btn-adauga">
+                + Adaugă Aliment Nou
+              </button>
+            )}
+
+            {arataFormular && (
+              <FormularAliment 
+                onAdd={handleAddAliment} 
+                onCancel={() => setArataFormular(false)} 
+              />
+            )}
+          </div>
+
           <h2>Lista de alimente</h2>
           <AlimentList 
             alimente={alimente} 
