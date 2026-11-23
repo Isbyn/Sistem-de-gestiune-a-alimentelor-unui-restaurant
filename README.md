@@ -113,6 +113,41 @@ http://localhost:5173
 | S6-R6 | README Stage 6 section + AI log | README.md, ai-log/etapa-06.md | read |
 | S6-R7 | commit "Stage 6" pushed | [aici vei pune linkul de la github] | commit history |
 
+## Stage 7: form and validation
+
+Controlled form (`FormularAliment.jsx`) for adding new food items with client-side validation (non-empty title), connected to `json-server` (`POST`, `PATCH`, `DELETE`). Includes error handling when the API is unavailable (preserving form input) and `data-testid` attributes for automated testing.
+
+### Stage 7 Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+| --- | --- | --- | --- |
+| S7-R1 | controlled form adds a new item via POST | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/FormularAliment.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/api.js` | submit form, check list & `db.json` |
+| S7-R2 | client-side validation blocks empty submit | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/FormularAliment.jsx` | submit empty title, check error & Network |
+| S7-R3 | toggle availability persists via PATCH | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/AlimentePage.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/api.js` | toggle checkbox, refresh page |
+| S7-R4 | delete item persists via DELETE | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/AlimentePage.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/api.js` | click Șterge, refresh page |
+| S7-R5 | API error shown without clearing form input | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/FormularAliment.jsx` | stop `json-server`, submit form |
+| S7-R6 | `data-testid` attributes present on form & items | `FormularAliment.jsxhttps://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/FormularAliment.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/AlimentCard.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/AlimentList.jsx` | `querySelectorAll` in console |
+| S7-R7 | README Stage 7 section + AI log | `README.md`, `ai-log/etapa-07.md` | read |
+| S7-R8 | commit "Stage 7" pushed | [link către commit-ul Stage 7] | commit history |
+
+## Stage 8: routing and detail page
+
+Three pages behind React Router: the list, a detail page at `/alimente/:id`, and an about page, plus a 404 page. Component styles moved to CSS Modules.
+
+### Stage 8 Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+| --- | --- | --- | --- |
+| S8-R1 | header navigation changes page without reload | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/App.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/Layout.jsx` | click links, watch Network |
+| S8-R2 | click on an item opens its detail page | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/AlimentCard.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/AlimentDetaliuPage.jsx` | click a title |
+| S8-R3 | refresh on the detail URL works; missing id shows an error | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/AlimentDetaliuPage.jsx` | refresh `/alimente/1`, open `/alimente/999` |
+| S8-R4 | unknown URL shows the app 404 page | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/App.jsx` (`path="*"`), `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/NotFoundPage.jsx` | open `/ceva` |
+| S8-R5 | each component has its `.module.css`; `index.css` only shared styles | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/tree/main/frontend/src/components`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/tree/main/frontend/src/pages`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/index.css` | read |
+| S8-R6 | `data-testid` attributes from tables 7.3 and 8.2; detail route `/alimente/:id` | `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/Layout.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/components/AlimentCard.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/AlimentDetaliuPage.jsx`, `https://github.com/Isbyn/Sistem-de-gestiune-a-alimentelor-unui-restaurant/blob/main/frontend/src/pages/NotFoundPage.jsx` | `querySelector` in the console |
+| S8-R7 | README Stage 8 section + AI log | `README.md`, `ai-log/etapa-08.md` | read |
+| S8-R8 | commit "Stage 8" pushed | [link către commit-ul Stage 8] | commit history |
+
+
 ## AI usage
 | Tool          | Used for                                               |
 | ------------- | ------------------------------------------------------ |
@@ -130,4 +165,6 @@ Details per stage: see the ai-log/ folder.
 - [x] Stage 4: rendered from data
 - [x] Stage 5: local state and events
 - [x] Stage 6: data from a mock API
-- [ ] Stage 7: form and validation
+- [x] Stage 7: form and validation
+- [x] Stage 8: routing and detail page
+- [ ] Stage 9: own backend with Express
