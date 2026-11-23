@@ -1,24 +1,55 @@
 import { useState } from 'react';
 
+const DEPOZITARE = [
+  { value: "Frigider", label: "Frigider" },
+  { value: "congelator", label: "Congelator" },
+  { value: "camara", label: "Cămară" }
+];
+const TITLU_MAX = 100;
+
 export default function FormularAliment({ onAdd, onCancel }) {
-  const [titlu, setTitlu] = useState('');
-  const [depozitare, setDepozitare] = useState('Frigider');
+  const [titlu, setTitlu] = useState("");
+  const [depozitare, setDepozitare] = useState("Frigider");
   const [disponibil, setDisponibil] = useState(true);
+  const [eroare, setEroare] = useState("");
+  const [trimite, setTrimite] = useState(false);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (!titlu.trim()) return;
-
-    const nouAliment = {
-      id: crypto.randomUUID(),
-      titlu: titlu,
-      depozitare: depozitare,
-      necesitaAprovizionare: !disponibil 
-    };
-
-    onAdd(nouAliment);
+  // Funcția de validare cerută la Etapa 7
+  function valideaza() {
+    const t = titlu.trim();
+    if (t === "") return "Numele alimentului este obligatoriu.";
+    if (t.length > TITLU_MAX) return `Numele are maximum ${TITLU_MAX} de caractere.`;
+    return "";
   }
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const mesaj = valideaza();
+    
+    if (mesaj) {
+      setEroare(mesaj);
+      return;
+    }
+
+    setEroare("");
+    setTrimite(true);
+
+    try {
+      await onAdd({ 
+        titlu: titlu.trim(), 
+        depozitare: depozitare, 
+        necesitaAprovizionare: !disponibil 
+      });
+      setTitlu("");
+      setDepozitare("Frigider");
+      setDisponibil(true);
+      if (onCancel) onCancel(); 
+    } catch (err) {
+      setEroare(err.message);
+    } finally {
+      setTrimite(false);
+    }
+  }
   const inputStyle = {
     padding: '8px 12px',
     borderRadius: '8px',
@@ -36,33 +67,39 @@ export default function FormularAliment({ onAdd, onCancel }) {
     border: 'none',
     color: 'white',
     fontWeight: 'bold',
-    cursor: 'pointer',
+    cursor: trimite ? 'not-allowed' : 'pointer', 
+    opacity: trimite ? 0.6 : 1, 
     flex: 1,
     transition: 'all 0.2s ease-in-out'
   };
 
- return (
-    <form className="formular" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '450px', margin: '0 0 2rem 0' }}>
+  return (
+    <form className="formular" onSubmit={handleSubmit} noValidate data-testid="form" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '450px', margin: '0 0 2rem 0' }}>
       
-      {/* Rândul 1: Numele și zona de depozitare, așezate în linie */}
       <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
         <input 
           type="text" 
           placeholder="Nume aliment (ex: Lapte)" 
           value={titlu} 
           onChange={(e) => setTitlu(e.target.value)} 
-          required 
-          style={inputStyle}
+          maxLength={TITLU_MAX}
+          aria-invalid={Boolean(eroare)}
+          data-testid="form-titlu"
+          style={{ ...inputStyle, borderColor: eroare ? '#991b1b' : '#c3c7cf' }}
         />
         
-        <select value={depozitare} onChange={(e) => setDepozitare(e.target.value)} style={inputStyle}>
-          <option value="Frigider">Frigider</option>
-          <option value="congelator">Congelator</option>
-          <option value="camara">Cămară</option>
+        <select 
+          value={depozitare} 
+          onChange={(e) => setDepozitare(e.target.value)} 
+          data-testid="form-depozitare" 
+          style={inputStyle}
+        >
+          {DEPOZITARE.map((d) => (
+            <option key={d.value} value={d.value}>{d.label}</option>
+          ))}
         </select>
       </div>
 
-      {/* Rândul 2: Checkbox-ul dedesubt, aliniat la stânga */}
       <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer', alignSelf: 'flex-start' }}>
         <input 
           type="checkbox" 
@@ -73,22 +110,25 @@ export default function FormularAliment({ onAdd, onCancel }) {
         Este disponibil acum?
       </label>
 
-      {/* Rândul 3: Butoanele de Salvează și Anulează */}
+      {eroare && (
+        <p className="error" data-testid="form-error" style={{ color: '#991b1b', margin: 0 }}>
+          {eroare}
+        </p>
+      )}
+
       <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
         <button 
           type="submit" 
+          disabled={trimite}
+          data-testid="form-submit" 
           style={{ ...btnStyle, backgroundColor: '#22c55e' }}
-          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#1ea951'}
-          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#22c55e'}
         >
-          Salvează
+          {trimite ? "Se salvează..." : "Salvează"}
         </button>
         <button 
           type="button" 
           onClick={onCancel} 
           style={{ ...btnStyle, backgroundColor: '#6b7280' }}
-          onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#4b5563'}
-          onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6b7280'}
         >
           Anulează
         </button>

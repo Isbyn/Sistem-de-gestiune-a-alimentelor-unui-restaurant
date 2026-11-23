@@ -1,0 +1,6 @@
+{
+  "resource": "alimente",
+  "title": "titlu",
+  "done": "necesitaAprovizionare",
+  "sample": { "depozitare": "Frigider" }
+}

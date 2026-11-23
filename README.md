@@ -91,7 +91,27 @@ Open `index.html` in a browser. No build step, no server.
 - [x] **S5-R6** Butonul din antet comută între tema luminoasă și cea întunecată, în ambele direcții, indiferent de tema sistemului.
 - [x] **S5-R7** Consola nu conține avertismente; README-ul și `ai-log/etapa-05.md` sunt actualizate.
 - [x] **S5-R8** Commit-ul Stage 5 este publicat pe GitHub.
+## Stage 6: data from a mock API
+The list is served by json-server from `db.json`. The app fetches it on load and shows a loading state and an error state.
 
+# terminal 1,
+npm run api
+http://localhost:3001
+
+# terminal 2,
+npm run dev
+http://localhost:5173
+### Tabelul de verificare al Etapei 6
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S6-R1 | npm run api starts, route shows JSON | package.json#L7, db.json | open localhost:3001/alimente |
+| S6-R2 | data no longer in React code | App.jsx#L13 (useState([])) | read |
+| S6-R3 | loading message while waiting | App.jsx#L88 | --delay 4000 |
+| S6-R4 | error message when API is down | App.jsx#L90-L94 | stop npm run api, refresh |
+| S6-R5 | fetch only in api.js, URL from env | api.js#L1-L9, .env.example | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | README.md, ai-log/etapa-06.md | read |
+| S6-R7 | commit "Stage 6" pushed | [aici vei pune linkul de la github] | commit history |
 
 ## AI usage
 | Tool          | Used for                                               |
@@ -109,4 +129,5 @@ Details per stage: see the ai-log/ folder.
 - [x] Stage 3: project initiation (Vite & React)
 - [x] Stage 4: rendered from data
 - [x] Stage 5: local state and events
-- [ ] Stage 6: loading data from a mock API
+- [x] Stage 6: data from a mock API
+- [ ] Stage 7: form and validation
