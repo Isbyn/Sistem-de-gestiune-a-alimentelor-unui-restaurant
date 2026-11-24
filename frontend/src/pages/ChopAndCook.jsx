@@ -3,13 +3,13 @@ import "./ChopAndCook.css";
 
 const RECIPES = [
   { name: "Carrot soup", need: { "🥕": 4, "🧅": 2 } },
-  { name: "Veggie stir-fry", need: { "🥦": 3, "🫑": 2, "🥕": 2 } },
+  { name: "Veggie stir-fry", need: { "🥦": 3, "🧄": 2, "🥕": 2 } },
   { name: "Garden salad", need: { "🥒": 3, "🍅": 3, "🥬": 2 } },
 ];
-const VEG = ["🥕", "🧅", "🥦", "🫑", "🥒", "🍅", "🥬", "🥔"];
+const VEG = ["🥕", "🧅", "🥦", "🧄", "🥒", "🍅", "🥬", "🥔"];
 const JUNK = ["🍩", "🍫"];
 const NAMES = {
-  "🥕": "carrot", "🧅": "onion", "🥦": "broccoli", "🫑": "pepper",
+  "🥕": "carrot", "🧅": "onion", "🥦": "broccoli", "🧄": "garlic",
   "🥒": "cucumber", "🍅": "tomato", "🥬": "lettuce", "🥔": "potato",
 };
 const MAX_LIVES = 3;
@@ -37,7 +37,6 @@ export default function ChopAndCook() {
     button: "Start cooking",
   });
 
-  // Mutable game state lives in a ref so the animation loop never goes stale.
   const g = useRef({
     items: [], fx: [], left: { ...RECIPES[0].need },
     level: 0, lives: MAX_LIVES, timeLeft: LEVEL_TIME, total: 0,

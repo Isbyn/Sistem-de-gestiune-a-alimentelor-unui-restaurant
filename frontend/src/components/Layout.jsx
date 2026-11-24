@@ -41,7 +41,7 @@ export default function Layout() {
       </header>
       
       <main className="container">
-        {/* Aici se încarcă paginile (AlimentePage, DesprePage, etc) */}
+  
         <Outlet />
       </main>
     </>

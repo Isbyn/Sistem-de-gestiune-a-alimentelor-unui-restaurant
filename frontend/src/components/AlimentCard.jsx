@@ -13,7 +13,7 @@ export default function AlimentCard({ aliment, onToggle, onDelete }) {
   const imagineFundal = aliment.imagine ? aliment.imagine : imagineGenerica;
 
   const cardStyle = {
-    // 3. Folosim variabila nouă aici
+
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url('${imagineFundal}')`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
