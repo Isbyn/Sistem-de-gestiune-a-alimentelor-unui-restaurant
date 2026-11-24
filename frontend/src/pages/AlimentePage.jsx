@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AlimentList from "../components/AlimentList.jsx";
 import FormularAliment from "../components/FormularAliment.jsx";
 import { fetchAlimente, createAliment, updateAliment, deleteAliment } from "../api.js"; 
+import styles from "./AlimentePage.module.css";
 
 export default function AlimentePage() {
   const [alimente, setAlimente] = useState([]);
@@ -52,29 +53,39 @@ export default function AlimentePage() {
   const disponibile = alimente.filter((a) => !a.necesitaAprovizionare).length;
 
   return (
-    <>
+    <div className={styles.grid}>
+      {/* Căsuța din STÂNGA: Adăugare aliment */}
       <section className="panel">
-        <div style={{ marginBottom: '1.5rem' }}>
-          {!arataFormular && (
-            <button onClick={() => setArataFormular(true)} className="btn-adauga">
-              + Adaugă Aliment Nou
-            </button>
-          )}
-          {arataFormular && (
-            <FormularAliment onAdd={handleAddAliment} onCancel={() => setArataFormular(false)} />
-          )}
-        </div>
+        <h2>Adaugă aliment</h2>
+        <FormularAliment onAdd={handleAddAliment} />
+      </section>
 
+      {/* Căsuța din DREAPTA: Lista de alimente */}
+      <section className="panel">
         <h2>Lista de alimente</h2>
-        <p>{alimente.length} alimente, dintre care {disponibile} disponibile</p>
-        
-        {loading && <p className="info" data-testid="loading">Se încarcă lista de alimente...</p>}
-        {error && <p className="error" data-testid="error">Eroare: {error}</p>}
+        <p className={styles.summary}>
+          {alimente.length} alimente, dintre care {disponibile} disponibile
+        </p>
+
+        {loading && (
+          <p className="info" data-testid="loading">
+            Se încarcă lista de alimente...
+          </p>
+        )}
+        {error && (
+          <p className="error" data-testid="error">
+            Eroare: {error}
+          </p>
+        )}
 
         {!loading && (
-          <AlimentList alimente={alimente} onToggle={handleToggle} onDelete={handleDelete} />
+          <AlimentList
+            alimente={alimente}
+            onToggle={handleToggle}
+            onDelete={handleDelete}
+          />
         )}
       </section>
-    </>
+    </div>
   );
 }

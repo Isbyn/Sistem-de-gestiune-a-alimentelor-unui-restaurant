@@ -32,6 +32,7 @@ export default function Layout() {
             <NavLink to="/despre" style={({ isActive }) => ({ ...linkStyle, backgroundColor: isActive ? 'rgba(255,255,255,0.2)' : 'transparent' })}>
               Despre
             </NavLink>
+            <NavLink to="/joc" style={({ isActive }) => ({ ...linkStyle, backgroundColor: isActive ? 'rgba(255,255,255,0.2)' : 'transparent' })}>Chop &amp; Cook</NavLink>
           </nav>
         </div>
         <button className="theme-toggle" onClick={handleTema} aria-pressed={tema === "dark"}>

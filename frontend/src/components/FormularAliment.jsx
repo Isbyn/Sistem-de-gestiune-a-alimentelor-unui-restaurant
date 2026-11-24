@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styles from "./FormularAliment.module.css";
 
 const DEPOZITARE = [
   { value: "Frigider", label: "Frigider" },
@@ -115,24 +116,14 @@ export default function FormularAliment({ onAdd, onCancel }) {
           {eroare}
         </p>
       )}
-
-      <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
-        <button 
-          type="submit" 
-          disabled={trimite}
-          data-testid="form-submit" 
-          style={{ ...btnStyle, backgroundColor: '#22c55e' }}
-        >
-          {trimite ? "Se salvează..." : "Salvează"}
-        </button>
-        <button 
-          type="button" 
-          onClick={onCancel} 
-          style={{ ...btnStyle, backgroundColor: '#6b7280' }}
-        >
-          Anulează
-        </button>
-      </div>
+<div className={styles.actions}>
+  <button type="submit" className={`${styles.btn} ${styles.btnSave}`} disabled={trimite}>
+    Salvează
+  </button>
+  <button type="button" className={`${styles.btn} ${styles.btnCancel}`} onClick={onCancel}>
+    Anulează
+  </button>
+</div>
     </form>
   );
 }
